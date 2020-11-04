@@ -11,6 +11,7 @@
     <None Remove="Samples\sample4.cod" />
     <None Remove="Samples\sample5.cod" />
     <None Remove="Samples\sample6.cod" />
+    <None Remove="Samples\sample7.cod" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +43,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Samples\sample2.cod">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Samples\sample7.cod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

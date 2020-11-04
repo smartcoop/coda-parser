@@ -141,6 +141,19 @@ namespace CodaParserTests
             Assert.AreEqual(214, transaction3.StatementSequence);
         }
 
+        [Test]
+        public void TestSubTransactions()
+        {
+            var parser = new Parser();
+            var result = parser.ParseFile(GetSamplePath("sample7.cod"));
+
+            Assert.AreEqual(3, result.First().Transactions.Count);
+            Assert.AreEqual("EWEBCP LLC", result.First().Transactions[0].Account.Name);
+            Assert.AreEqual(-7.26m, result.First().Transactions[0].Amount);
+            Assert.AreEqual(-1.26m, result.First().Transactions[1].Amount);
+            Assert.AreEqual(-6, result.First().Transactions[2].Amount);
+        }
+
         private string GetSamplePath(string sampleFile)
         {
             return System.IO.Path.Combine(TestContext.CurrentContext.TestDirectory, "Samples", sampleFile);
