@@ -79,9 +79,8 @@ namespace CodaParser.StatementParsers
             foreach (var transactionOrInformationLine in lines)
             {
                 if (transactions.Count == 0 ||
-                    //(sequenceNumber != transactionOrInformationLine.SequenceNumber.Value || sequenceNumberDetail != transactionOrInformationLine.SequenceNumberDetail.Value))
                     sequenceNumber != transactionOrInformationLine.SequenceNumber.Value ||
-                    (typeof(TransactionPart1Line) == transactionOrInformationLine.GetType() && sequenceNumberDetail != transactionOrInformationLine.SequenceNumberDetail.Value))
+                    (typeof(TransactionPart1Line) == transactionOrInformationLine.GetType() && sequenceNumberDetail != transactionOrInformationLine.SequenceNumberDetail.Value)) // Creates a new transaction when a TransactionPart1 is encountered again
                 {
                     sequenceNumber = transactionOrInformationLine.SequenceNumber.Value;
                     sequenceNumberDetail = transactionOrInformationLine.SequenceNumberDetail.Value;
