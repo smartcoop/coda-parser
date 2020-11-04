@@ -16,5 +16,10 @@ namespace CodaParser.Lines
         /// Gets the sequence number.
         /// </summary>
         SequenceNumber SequenceNumber { get; }
+
+        /// <summary>
+        /// Gets the sequence detail number.
+        /// </summary>
+        SequenceNumberDetail SequenceNumberDetail { get; }
     }
 }

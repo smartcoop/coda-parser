@@ -74,12 +74,17 @@ namespace CodaParser.StatementParsers
             var transactions = new Dictionary<int, List<IInformationOrTransactionLine>>();
             var idx = -1;
             var sequenceNumber = -1;
+            var sequenceNumberDetail = -1;
 
             foreach (var transactionOrInformationLine in lines)
             {
-                if (transactions.Count == 0 || sequenceNumber != transactionOrInformationLine.SequenceNumber.Value)
+                if (transactions.Count == 0 ||
+                    //(sequenceNumber != transactionOrInformationLine.SequenceNumber.Value || sequenceNumberDetail != transactionOrInformationLine.SequenceNumberDetail.Value))
+                    sequenceNumber != transactionOrInformationLine.SequenceNumber.Value ||
+                    (typeof(TransactionPart1Line) == transactionOrInformationLine.GetType() && sequenceNumberDetail != transactionOrInformationLine.SequenceNumberDetail.Value))
                 {
                     sequenceNumber = transactionOrInformationLine.SequenceNumber.Value;
+                    sequenceNumberDetail = transactionOrInformationLine.SequenceNumberDetail.Value;
                     idx += 1;
 
                     transactions[idx] = new List<IInformationOrTransactionLine>();
