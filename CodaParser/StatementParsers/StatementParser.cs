@@ -25,18 +25,22 @@ namespace CodaParser.StatementParsers
                 date = identificationLine.CreationDate.Value;
             }
 
+            var initialBalanceDate = new DateTime(1, 1, 1);
             var initialBalance = 0.0m;
             var initialStateLine = Helpers.GetFirstLineOfType<InitialStateLine>(lines);
             if (initialStateLine != null)
             {
                 initialBalance = initialStateLine.Balance.Value;
+                initialBalanceDate = initialStateLine.Date.Value;
             }
 
+            var newBalanceDate = new DateTime(1, 1, 1);
             var newBalance = 0.0m;
             var newStateLine = Helpers.GetFirstLineOfType<NewStateLine>(lines);
             if (newStateLine != null)
             {
                 newBalance = newStateLine.Balance.Value;
+                newBalanceDate = newStateLine.Date.Value;
             }
 
             var messageParser = new MessageParser();
@@ -59,14 +63,17 @@ namespace CodaParser.StatementParsers
             var transactionParser = new TransactionParser();
             var transactions = transactionLines.Select(l => transactionParser.Parse(l));
 
-            return new Statement(
-                date,
-                account,
-                initialBalance,
-                newBalance,
-                informationalMessage,
-                transactions
-            );
+            return new Statement()
+            {
+                Date = date,
+                Account = account,
+                InitialBalance = initialBalance,
+                InitialBalanceDate = initialBalanceDate,
+                NewBalance = newBalance,
+                NewBalanceDate = newBalanceDate,
+                InformationalMessage = informationalMessage,
+                Transactions = Array.AsReadOnly(transactions.ToArray())
+            };
         }
 
         private IEnumerable<IEnumerable<IInformationOrTransactionLine>> GroupTransactions(IEnumerable<IInformationOrTransactionLine> lines)

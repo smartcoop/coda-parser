@@ -10,6 +10,14 @@ namespace CodaParser.Statements
     public class Statement
     {
         /// <summary>
+        /// Basic constructor to object initializer 
+        /// </summary>
+        public Statement()
+        {
+
+        }
+
+        /// <summary>
         /// Initializes a new <see cref="Statement"/> class.
         /// </summary>
         /// <param name="date">The execution date.</param>
@@ -31,31 +39,41 @@ namespace CodaParser.Statements
         /// <summary>
         /// Gets the changed account.
         /// </summary>
-        public Account Account { get; }
+        public Account Account { get; internal set; }
 
         /// <summary>
         /// Gets the execution date.
         /// </summary>
-        public DateTime Date { get; }
+        public DateTime Date { get; internal set; }
 
         /// <summary>
         /// Gets the informational message.
         /// </summary>
-        public string InformationalMessage { get; }
+        public string InformationalMessage { get; internal set; }
 
         /// <summary>
         /// Gets the initial balance.
         /// </summary>
-        public decimal InitialBalance { get; }
+        public decimal InitialBalance { get; internal set; }
+
+        /// <summary>
+        /// Gets the initial balance date.
+        /// </summary>
+        public DateTime InitialBalanceDate { get; internal set; }
 
         /// <summary>
         /// Gets the new balance.
         /// </summary>
-        public decimal NewBalance { get; }
+        public decimal NewBalance { get; internal set; }
+
+        /// <summary>
+        /// Gets the new balance date.
+        /// </summary>
+        public DateTime NewBalanceDate { get; internal set; }
 
         /// <summary>
         /// Gets the executed transactions.
         /// </summary>
-        public IReadOnlyList<Transaction> Transactions { get; }
+        public IReadOnlyList<Transaction> Transactions { get; internal set; }
     }
 }
